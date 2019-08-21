@@ -29,7 +29,7 @@ int main(void) {
 	 */
 	scanf("%d", &height);
 
-	volume = length + width + height;
+	volume = length *  width * height;
 
 	printf("Answer is %d\n", volume);
 
