@@ -27,7 +27,7 @@ int main(void) {
 	 * called 'core'. You should remove this 'core' file.
 	 * Remove this comment after correction.
 	 */
-	scanf("%d", height);
+	scanf("%d", &height);
 
 	volume = length + width + height;
 
