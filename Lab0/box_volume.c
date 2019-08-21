@@ -31,7 +31,7 @@ int main(void) {
 
 	volume = length *  width * height;
 
-	printf("Answer is %d\n", volume);
+	printf("Volume = %d\n", volume);
 
 	return 0;
 }
