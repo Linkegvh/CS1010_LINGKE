@@ -22,11 +22,11 @@ int simple_average();
 int simple_value_gather(int int_num);
 
 int main() {
-	int inter = 0; //this is intermediate value storer
+	int inter = 0; //this is intermediate value storer for the while loop later
 	// print welcome information
 	printf("Welcome to Nanotable!\n");
 	printf("Type \"help\" for more information...\n");
-	while (inter != 1){
+	while (inter != 1){ // this is the loop in which unless exit is typed, it will loop forever
 		inter = parse_command();
 	}
 	return 0;
@@ -47,7 +47,10 @@ int parse_command() {
 	}
 	else if (command_code == COMMAND_EXIT) {
 		printf("See you!\n");
-		return 1;
+		return 1; 
+/* I have added a return here so that when exit is typed
+ *  we will exit straight into the main function to exit
+ */ 
 	}
 	else if (command_code == COMMAND_SUM) {
 		simple_sum();
@@ -76,16 +79,24 @@ int parse_command() {
  * inter is a intermediate value used in outputing the correct ordinal prefix
  */
 int simple_sum() {
-	int int_num, total; //declaring variables
+	int int_num, total; //declaring variables 
 	printf("Please indicate the number of integers:\n");
 	scanf("%d", &int_num);
-	total = simple_value_gather(int_num);
+	total = simple_value_gather(int_num); // here I call another self-created function to gather the sum of N input numbers.
 	printf("sum is %d\n", total);
 	return 0;
 }
 
+/* this function will return the average of N inputs
+ * It works like the ablve simple_sum but with a twist
+ * I will get the sum of N inputs
+ * then get the actual average and store it with variable name: answer
+ * then I will check if this answer has a decimal part that is greater or equal to 0.5
+ * If yes, I will round up the answer and return that as the average
+ * else, I will remove the decimal part of the answer and return it as the average
+ */
 int simple_average() {
-	int int_num, total; //declaring variables and they are all referring to the same variable as in simple)sum
+	int int_num, total; //declaring variables
 	float answer;
 	printf("Please indicate the number of integers:\n");
 	scanf("%d", &int_num);
@@ -101,6 +112,7 @@ int simple_average() {
  * i is a counter
  * inter is a intermedaite value storer
  * total is the sum of all numbers inputs
+ * this function will return the sum of N inputs which N = int_num
  */
 
 int simple_value_gather(int int_num){
