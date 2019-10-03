@@ -130,7 +130,7 @@ int simple_value_gather(int int_num){
                                 printf("rd");
                         }else {printf("th");}
                 }else {printf("th");}
-                printf(" number\n");
+                printf(" number:\n");
                 scanf("%d", &number);
                 total = total + number;
                 i++;
