@@ -1,7 +1,33 @@
 /**
  * CS1010 AY2017/8 Semester 1 Lab4 Ex3
  * frogs.c
- * <Type your program description here>
+ * <This is a game program. 
+ * 	user input: 
+ * 		- the arrangement of the frogs
+ * 		- how you want to move the frogs
+ * 
+ * the program will automatically identify 
+ * 	- if you have move into a situation that no more moves are possible
+ * 	- if you have successfully moved all the frogs pass the bridge or does not.
+ *
+ * the program is implemented in a recursive style and manipulation of 1d array
+ * 	Assumptions:
+ * 		- there will only be one gap in between the arragement of the frogs
+ * 		- when all the frogs have been moved aross bridge, no more movement is possible
+ * 	working mechanism:
+ * 		Step 1:
+ * 			Check if movement is possible
+ * 		Step 2:
+ * 			if movement is possible, ask for user input to move
+ * 			else, check if this is the condition for win or lose
+ * 		Step 3:
+ * 			if user input is asked, check user input validity
+ * 		Step 4:
+ * 			if user input is valid, move the frogs and check again for movement possibility
+ * 			else, ask again for user input
+ * 		Step 5:
+ * 			loop back to step 1
+ * >
  * <Ding Lingke>
  * <T04>
  */
@@ -26,6 +52,7 @@ int main(void) {
 
 	int numMoves = 0;
 	int gameState;
+	int move_or_not;
 
 	printf("Please enter the length of the bridge: ");
 	scanf("%d", &lengthOfBridge);
@@ -45,19 +72,26 @@ int main(void) {
 	printf("Please start moving the frogs\n");
 
 	/** Insert your code below **/
-	gameState = 1;
+	gameState = 1; // gameState will always be 1 if more movements are possible
 	
 	while (gameState == 1){
-		numMoves += move_frog(bridge, lengthOfBridge);
+		
+		move_or_not= move_frog(bridge, lengthOfBridge);
+		
+		numMoves += move_or_not;
+		
+		// move_or_not is 1 when user input for frog movement is valid and the frog is moved
+		// move_or_not is 0 when user input for frog movement is invalid and frog is not moved
 
-		printf("\n======================\n");
-		printf("After movement:\n");
-		printBridge(lengthOfBridge, bridge);
+		if (move_or_not == 1){
+			printBridge(lengthOfBridge, bridge);
+		}
 
 		gameState = check_status(bridge, lengthOfBridge);
 
-		printf("\n======================\n");
 	}
+	
+	// check_success returns 1 if it is a win condition, else a 0 is returned
 
 	if (check_success (bridge, lengthOfBridge)){
 		printf("Congratulations! The frogs took %d jumps to cross the bridge!\n", numMoves);
@@ -69,14 +103,15 @@ int main(void) {
 	return 0;
 }
 
+// this funciton is to move the frogs from a user input position to the position of the space. 
+// this function will also called another function to check for user input validity
+
 int move_frog (int arr[100], int size){
 	int pos_move, zero_pos;
 	zero_pos = check_zero_position(arr, size);
 	
 	printf("Move the frog at position: ");
 	scanf("%d", &pos_move);
-	
-	printf("this is zero_pos: %d", zero_pos); printf(" & this is pos_move: %d\n", pos_move);
 
 	if (check_valid (arr, zero_pos, pos_move) == 1){
 		arr[zero_pos] = arr[pos_move];
@@ -87,6 +122,8 @@ int move_frog (int arr[100], int size){
 		return 0;
 	}
 }
+
+// this function is to check user input validity for frog movement
 
 int check_valid (int arr[100], int zero_pos, int pos_move){
 	if (arr[pos_move] == 1){
@@ -105,6 +142,8 @@ int check_valid (int arr[100], int zero_pos, int pos_move){
 	return 0;
 }
 
+// this function is to check if more frog movements are possible
+
 int check_status(int arr[100], int size){
 	int zero_pos;
 
@@ -118,6 +157,8 @@ int check_status(int arr[100], int size){
 		return 0;
 	}
 }
+
+// this function is to check if the win condition is reached
 
 int check_success (int arr [100], int size){
 	int i, sign_flag[2];
@@ -142,6 +183,8 @@ int check_success (int arr [100], int size){
 	return 1;
 }
 
+// this function is to check the location of the space
+
 int check_zero_position(int arr[100], int size){
 	int i;
 	for (i = 0; i < size; i++){
@@ -151,6 +194,8 @@ int check_zero_position(int arr[100], int size){
 	}
 	return 0;
 }
+
+// this is a function to compare if the two inputs are the same
 
 int compare(int a, int b){
 	if (a == b){
