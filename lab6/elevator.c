@@ -133,15 +133,20 @@ void printElevators(elevator_t elevators[], int size){
 // this task is to find the most used elevators from the list of elevators, namly the elevator with the highest usage data.
 // a bubble sort technique is performed here
 int mostUsedElevator(elevator_t elevators[], int size){
-    int i = 0, mostUsed[2] = {0, 0};
+    int i = 0, mostUsed[2] = {0, 0}; // the first item in array stores the highest usage data and the second item in array stores the elevator number
     while (elevators[i].status != INACTIVE){
-        if (i == 0){
+        if (i == 0){ // initialise the data into the mostused array
             mostUsed[0] = elevators[i].usage;
             mostUsed[1] = i + 1;
         }else {
             if (elevators[i].usage > mostUsed[0]){
                 mostUsed[0] = elevators[i].usage;
                 mostUsed[1] = i + 1;
+            }else if (elevators[i].usage == mostUsed[0]){
+                if (elevators[i].Num_of_passengers > elevators[mostUsed[1]].Num_of_passengers){
+                    mostUsed[0] = elevators[i].usage;
+                    mostUsed[1] = i + 1;
+                }
             }
         }
         i ++;
