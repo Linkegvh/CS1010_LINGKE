@@ -1,7 +1,14 @@
 /**
  * CS1010 AY2017/8 Semester 1 Lab6 Ex3
  * elevator.c
- * <Type a description of the program here>
+ * <
+ * This program takes in an integer i, 
+ * which represent the number of elevators to be simulated, 
+ * as well as i strings of digits, which represent the sequences of floors. 
+ * The program then simulates the running of the elevators and prints the required outputs in the end.
+ * 
+ * The output includes the end locations of each elevator and the amount of people inside as well as returning the most used elevator Number.
+ * >
  * <Ding Lingke>
  * <T04>
  */
@@ -76,8 +83,8 @@ void readSequences(char sequences[][MAX_LEN], int size){
 	}
 }
 
+// this task is to start the elevator movements
 void runElevators(elevator_t elevators[], char sequences[][MAX_LEN], int size){
-	// Incomplete
     int i, j;
     for (i = 0; i < size; i ++){
         j = 0;
@@ -88,6 +95,7 @@ void runElevators(elevator_t elevators[], char sequences[][MAX_LEN], int size){
     }
 }
 
+// this task is to move the elevators to the currect floor and add in and remove passengers from the elevators accordingly
 void goToFloor(elevator_t *elevator, int floor){
     if ((*elevator).Floor < floor){
         if ((*elevator).Num_of_passengers + floor <= 15){
@@ -122,8 +130,8 @@ void printElevators(elevator_t elevators[], int size){
     return;
 }
 
+// this task is to find the most used elevators from the list of elevators, namly the elevator with the highest usage data.
 int mostUsedElevator(elevator_t elevators[], int size){
-	// Incomplete
     int i = 0, mostUsed[2] = {0, 0};
     while (elevators[i].status != INACTIVE){
         if (i == 0){
