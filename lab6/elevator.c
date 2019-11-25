@@ -143,7 +143,7 @@ int mostUsedElevator(elevator_t elevators[], int size){
                 mostUsed[0] = elevators[i].usage;
                 mostUsed[1] = i + 1;
             }else if (elevators[i].usage == mostUsed[0]){
-                if (elevators[i].Num_of_passengers > elevators[mostUsed[1]].Num_of_passengers){
+                if (elevators[i].Num_of_passengers > elevators[mostUsed[1] - 1].Num_of_passengers){
                     mostUsed[0] = elevators[i].usage;
                     mostUsed[1] = i + 1;
                 }
