@@ -57,7 +57,6 @@ int main(void){
 
 // enable the size amount of elevators for use
 void setupElevators(elevator_t elevators[], int size){
-	// Incomplete
     int i;
     for (i = 0; i < MAX_ELEVATORS; i++){
         if (i < size) {
@@ -65,9 +64,9 @@ void setupElevators(elevator_t elevators[], int size){
             elevators[i].Floor = 1;
             elevators[i].Num_of_passengers = 0;
             elevators[i].usage = 0;
-            }else {
-                elevators[i].status = INACTIVE;
-            }
+        }else {
+            elevators[i].status = INACTIVE;
+        }
     }
     return;
 }	
@@ -118,9 +117,8 @@ void goToFloor(elevator_t *elevator, int floor){
 }
 
 void printElevators(elevator_t elevators[], int size){
-	// Incomplete
     int i = 0;
-    while (elevators[i].status != INACTIVE){
+    while (elevators[i].status != INACTIVE && i < size){
         printf("Elevator %d:\n", i + 1); 
         printf("Floor: %d\n", elevators[i].Floor);
         printf("Number of passengers: %d\n", elevators[i].Num_of_passengers);
