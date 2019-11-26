@@ -9,3 +9,5 @@ test3.c is about string manipulation that is a bit difficult to see also + rando
 test4.c is about structures
 
 test5.c is about recursions
+
+test6.c is about ASCII table stuff
